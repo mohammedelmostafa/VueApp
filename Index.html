@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First App</title>
+</head>
+<body>
+
+    <div id="app">
+        <input v-model="massage">
+        <input v-bind:value="massage" v-on:input="massage = $event.target.value">
+        {{massage}}
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+            <todo-item></todo-item>
+        </ol>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        Vue.component('todo-item',{
+            template: '<li>This is a todo</li>'
+        })
+
+        // this is vue object 
+        var vm = new Vue({
+            el:'#app',
+            data: {
+                massage:"Hello world",
+                todos:[
+                { text: 'Learn JavaScript' },
+                { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+                ]
+
+            },
+
+// this is how to create methods in vue js.
+            methods:{
+                reverseMesssage: function (){
+                    // this.massage=this.massage
+                }
+
+            }
+        })
+    </script>
+    
+</body>
+</html>

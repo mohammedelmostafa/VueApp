@@ -8,6 +8,13 @@
 <body>
 
     <div id="app">
+
+        <label>Write user name</label>
+        <input type="text" v-model="UserName">
+        <br>
+        <p>{{validateUserName}}</p>
+        <br>
+        <br>
         <label >Find todo list</label>
         <input type="text" v-model="findlist">
         <ul>
@@ -72,6 +79,7 @@
                 name:"Mohammed",
                 firstname:"Mohammed",
                 lastname:"Elmostafa",
+                UserName:'',
                 findlist:'',
                 age:25,
                 url:'http://google.com',
@@ -120,8 +128,18 @@
                 fliterlist(){
                     var filtering = new RegExp(this.findlist,'i');
                     return this.todos.filter(el => el.match(filtering));
+                },
+
+                validateUserName(){
+                    if (!this.UserName) {
+                        return 'is empty';
+                    }else if(this.UserName.length>5){
+                        return 'Welcome'+ ' ' + this.UserName;
+                    }
                 }
             },
+
+            
         })
     </script>
     

@@ -15,7 +15,8 @@
             <li v-for="todo in todos">
                 {{todo.text}}
             </li>
-            <todo-item ></todo-item>
+            <todo-item :name="name" :url="url"></todo-item>
+            <todo-item v-for="post in Posts" :author="post.author" :title="post.title"></todo-item>
         </ol>
         <p v-text="massage"></p>
         <p>Lorem {{name}} ipsum dolor sit amet consectetur adipisicing elit. Consequatur eveniet odit, maxime culpa laborum voluptas, magni quisquam inventore deserunt, ducimus repudiandae. Asperiores veniam dolorem voluptates tenetur explicabo corporis qui sed.</p>
@@ -35,7 +36,9 @@
                     count:0
                 }
             },
-            template: '<p v-on:click="count++">This is {{count}} a todo</p>'
+            // to use passing date into components
+            props:['author','title'],
+            template: '<p v-on:click="count++">This is {{author}} a todo and url is {{title}}</p>'
         })
 
         // this is vue object 
@@ -44,11 +47,19 @@
             data: {
                 massage:"Hello world",
                 name:"Mohammed",
+                url:'http://google.com',
                 todos:[
                 { text: 'Learn JavaScript' },
                 { text: 'Learn Vue' },
                 { text: 'Build something awesome' }
-                ]
+                ],
+                Posts:[
+                { id:1, author:'ahmed',title:'Learn JavaScript'},
+                { id:2, author:'medo',title:'Learn Vue'},
+                { id:3, author:'ali',title:'Build something awesome' },
+                { id:4, author:'husam',title:'Build something awesome' }
+                ],
+                
 
             },
 

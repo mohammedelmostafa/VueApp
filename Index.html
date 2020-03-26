@@ -15,8 +15,12 @@
             <li v-for="todo in todos">
                 {{todo.text}}
             </li>
-            <todo-item></todo-item>
+            <todo-item ></todo-item>
         </ol>
+        <p v-text="massage"></p>
+        <p>Lorem {{name}} ipsum dolor sit amet consectetur adipisicing elit. Consequatur eveniet odit, maxime culpa laborum voluptas, magni quisquam inventore deserunt, ducimus repudiandae. Asperiores veniam dolorem voluptates tenetur explicabo corporis qui sed.</p>
+        <p v-text="name? 'your name is set':'your name is not set'"></p>
+        <p v-for="todo in todos" v-text="todo.text"></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -24,7 +28,10 @@
     <script>
 
         Vue.component('todo-item',{
-            template: '<li>This is a todo</li>'
+            template: '<b>This is a todo</b>',
+            data:function(){
+                return template;
+            }
         })
 
         // this is vue object 
@@ -32,6 +39,7 @@
             el:'#app',
             data: {
                 massage:"Hello world",
+                name:"Mohammed",
                 todos:[
                 { text: 'Learn JavaScript' },
                 { text: 'Learn Vue' },

@@ -28,10 +28,14 @@
     <script>
 
         Vue.component('todo-item',{
-            template: '<b>This is a todo</b>',
+            
             data:function(){
-                return template;
-            }
+                return {
+                    MyName:'mohameed elmostafa',
+                    count:0
+                }
+            },
+            template: '<p v-on:click="count++">This is {{count}} a todo</p>'
         })
 
         // this is vue object 

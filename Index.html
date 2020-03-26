@@ -18,6 +18,7 @@
             <todo-item :name="name" :url="url"></todo-item>
             <todo-item v-for="post in Posts" :author="post.author" :title="post.title"></todo-item>
         </ol>
+        <post-item></post-item>
         <p v-text="massage"></p>
         <p>Lorem {{name}} ipsum dolor sit amet consectetur adipisicing elit. Consequatur eveniet odit, maxime culpa laborum voluptas, magni quisquam inventore deserunt, ducimus repudiandae. Asperiores veniam dolorem voluptates tenetur explicabo corporis qui sed.</p>
         <p v-text="name? 'your name is set':'your name is not set'"></p>
@@ -28,7 +29,18 @@
 
     <script>
 
-        Vue.component('todo-item',{
+// Local component
+        var PostItem ={
+            data:function(){
+                return {
+                    MyName:'mohameed elmostafa',
+                    count:0
+                }
+            },
+
+        }
+
+            Vue.component('todo-item',{
             
             data:function(){
                 return {
@@ -60,6 +72,11 @@
                 { id:4, author:'husam',title:'Build something awesome' }
                 ],
                 
+
+            },
+
+            component:{
+                'post-item':PostItem
 
             },
 

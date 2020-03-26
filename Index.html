@@ -8,6 +8,15 @@
 <body>
 
     <div id="app">
+        <label >Find todo list</label>
+        <input type="text" v-model="findlist">
+        <ul>
+            <li v-for="findto in fliterlist">
+                {{findto}}
+            </li>
+        </ul>
+        <p>{{clacAge}}</p>
+        <p>{{FullName}}</p>
         <input v-model="massage">
         <input v-bind:value="massage" v-on:input="massage = $event.target.value">
         {{massage}}
@@ -23,6 +32,7 @@
         <p>Lorem {{name}} ipsum dolor sit amet consectetur adipisicing elit. Consequatur eveniet odit, maxime culpa laborum voluptas, magni quisquam inventore deserunt, ducimus repudiandae. Asperiores veniam dolorem voluptates tenetur explicabo corporis qui sed.</p>
         <p v-text="name? 'your name is set':'your name is not set'"></p>
         <p v-for="todo in todos" v-text="todo.text"></p>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -37,6 +47,7 @@
                     count:0
                 }
             },
+            template: '<p>test local component<p>'
 
         }
 
@@ -59,12 +70,18 @@
             data: {
                 massage:"Hello world",
                 name:"Mohammed",
+                firstname:"Mohammed",
+                lastname:"Elmostafa",
+                findlist:'',
+                age:25,
                 url:'http://google.com',
+
                 todos:[
-                { text: 'Learn JavaScript' },
-                { text: 'Learn Vue' },
-                { text: 'Build something awesome' }
+                 'Learn JavaScript' ,
+                 'Learn Vue' ,
+                 'Build something awesome' 
                 ],
+
                 Posts:[
                 { id:1, author:'ahmed',title:'Learn JavaScript'},
                 { id:2, author:'medo',title:'Learn Vue'},
@@ -75,7 +92,8 @@
 
             },
 
-            component:{
+// to register local components
+            components:{
                 'post-item':PostItem
 
             },
@@ -84,9 +102,26 @@
             methods:{
                 reverseMesssage: function (){
                     // this.massage=this.massage
-                }
+                },           
 
-            }
+            },
+
+            // to input calcluated functions
+            computed: {
+                clacAge(){
+                    console.log('Run');
+                    return this.age*3;
+                },
+                FullName(){
+                    return this.firstname + ' ' + this.lastname;
+                    // this is by using template literals
+                    //  return `${this.firstname} ${this.lastname}`;
+                },
+                fliterlist(){
+                    var filtering = new RegExp(this.findlist,'i');
+                    return this.todos.filter(el => el.match(filtering));
+                }
+            },
         })
     </script>
     

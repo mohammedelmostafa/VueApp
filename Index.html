@@ -9,6 +9,14 @@
 
     <div id="app">
 
+        <label>SDG</label>
+        <input type="text" v-model="sdg">
+        <label>USD</label>
+        <input type="text" v-model="usd">
+<br>
+<br>
+<br>
+<br>
         <label>Write user name</label>
         <input type="text" v-model="UserName">
         <br>
@@ -81,6 +89,8 @@
                 lastname:"Elmostafa",
                 UserName:'',
                 findlist:'',
+                sdg:0,
+                usd:0,
                 age:25,
                 url:'http://google.com',
 
@@ -138,7 +148,15 @@
                 }
             },
 
-            
+            watch: {
+                sdg: function(v){
+                    this.usd=v/130;
+
+                },
+                usd: function(v){
+                    this.sdg=v*130;
+                }
+            },        
         })
     </script>
     
